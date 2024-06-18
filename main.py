@@ -42,11 +42,19 @@ add_data_endpoint = f"{graph_endpoint}/{GRAPH_ID}"
 
 today = datetime.now()
 today_str = today.strftime("%Y%m%d")
+
+yesterday = datetime(year=2024, month=6, day=17)
+yesterday_str = yesterday.strftime("%Y%m%d")
 # print(today_str)
 
+# data_config = {
+#     "date": today_str,
+#     "quantity": "5",
+# }
+
 data_config = {
-    "date": today_str,
-    "quantity": "5",
+    "date": yesterday_str,
+    "quantity": "15",
 }
 
 # response = requests.post(url=add_data_endpoint, json=data_config, headers=headers)
@@ -59,5 +67,11 @@ updates = {
     "quantity": "10"
 }
 
-response = requests.put(url=update_endpoint, json=updates, headers=headers)
-print(response.text)
+# response = requests.put(url=update_endpoint, json=updates, headers=headers)
+# print(response.text)
+
+# delete a pixel
+# endpoint same as update in this case - just change date to one you want to delete
+
+response = requests.delete(url=update_endpoint, headers=headers)
+print(response)
