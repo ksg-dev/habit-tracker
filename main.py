@@ -51,3 +51,13 @@ data_config = {
 
 # response = requests.post(url=add_data_endpoint, json=data_config, headers=headers)
 # print(response.text)
+
+# update a pixel - today_str is date you want to update
+update_endpoint = f"{add_data_endpoint}/{today_str}"
+
+updates = {
+    "quantity": "10"
+}
+
+response = requests.put(url=update_endpoint, json=updates, headers=headers)
+print(response.text)
