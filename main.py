@@ -1,7 +1,9 @@
 import requests
+from datetime import datetime
 
 USERNAME = "ksg-dev"
 TOKEN = "aiuehfo82398hfalsej"
+GRAPH_ID = "graph1"
 
 pixela_endpoint = "https://pixe.la/v1/users"
 
@@ -21,7 +23,7 @@ graph_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs"
 # View Graph: https://pixe.la/v1/users/ksg-dev/graphs/graph1.html
 
 graph_config = {
-    "id": "graph1",
+    "id": GRAPH_ID,
     "name": "Cycling Graph",
     "unit": "Km",
     "type": "float",
@@ -36,12 +38,16 @@ headers = {
 # print(response.text)
 
 # add value to graph
-add_data_endpoint = f"{graph_endpoint}/graph1"
+add_data_endpoint = f"{graph_endpoint}/{GRAPH_ID}"
+
+today = datetime.now()
+today_str = today.strftime("%Y%m%d")
+# print(today_str)
 
 data_config = {
-    "date": "20240618",
+    "date": today_str,
     "quantity": "5",
 }
 
-response = requests.post(url=add_data_endpoint, json=data_config, headers=headers)
-print(response.text)
+# response = requests.post(url=add_data_endpoint, json=data_config, headers=headers)
+# print(response.text)
